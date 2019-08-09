@@ -24,7 +24,29 @@ namespace WebApplication1.Controllers
         public ActionResult<IEnumerable<Student>> Get()
         {
             return this.studentService.StudentList;
+        }
+        //POST api/student
+        [HttpPost]
+        public ActionResult Post(Student student)
+        {
+            if (string.IsNullOrEmpty(student.Name))
+            {
+                return this.BadRequest();
+            }
 
+            if (string.IsNullOrEmpty(student.Surname))
+            {
+                return this.BadRequest("Soyisim alanı girilmelidir");
+            }
+
+            if(student.SchoolId <= 0 || student.SchoolId > 10000)
+            {
+                return this.BadRequest("Okul numarası 0 ile 10000 arasında olmalıdır");
+            }
+
+            this.studentService.StudentList.Add(student);
+
+            return this.Ok();
         }
     }
 }
