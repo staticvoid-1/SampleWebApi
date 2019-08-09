@@ -15,14 +15,29 @@
     </tbody>
 </table>
 <script>
-    function loadFunction() {
-        $.ajax({
-            url: 'http://localhost:62885/api/student'
-        }).done(function (data, textStatus, xhr) {
-            //alert(data);
-            //console.log(data);
+    function onloadEventHandler() {
 
-            //alert(data[0].name + " ve " + data[1].name);
+        var studentList = getStudentList();
+
+        
+           
+            }
+        
+        function getStudentList() {
+            $.ajax({
+                url: 'http://localhost:62885/api/student'
+            }).done(function (data, textStatus, xhr) {
+               //alert(data);
+                //console.log(data);
+
+                //alert(data[0].name + " ve " + data[1].name);
+                fillStudentTable(data);
+                return data;
+            });
+
+        }
+
+        function fillStudentTable(data) {
 
             var tBody = document.getElementById("studentTableBody");
 
@@ -34,10 +49,8 @@
                     "<td>" + data[i].schoolId + "</td>";
 
                 tBody.appendChild(tableRow);
-            }
-        });
 
-
+        }
 
     }
 </script>
