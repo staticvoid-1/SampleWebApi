@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class=" table table-hover">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Soyİsim</th>
+            <th>Okul No</th>
+        </tr>
+    </thead>
+
+    <tbody id="studentTableBody">
+    </tbody>
+</table>
+<script>
+    function loadFunction() {
+        $.ajax({
+            url: 'http://localhost:62885/api/student'
+        }).done(function (data, textStatus, xhr) {
+            //alert(data);
+            //console.log(data);
+
+            //alert(data[0].name + " ve " + data[1].name);
+
+            var tBody = document.getElementById("studentTableBody");
+
+            for (i = 0; i < data.length; i++) {
+                var tableRow = document.createElement('tr');
+                tableRow.innerHTML =
+                    "<td>" + data[i].name + "</td>" +
+                    "<td>" + data[i].surname + "</td>" +
+                    "<td>" + data[i].schoolId + "</td>";
+
+                tBody.appendChild(tableRow);
+            }
+        });
+
+
+
+    }
+</script>
