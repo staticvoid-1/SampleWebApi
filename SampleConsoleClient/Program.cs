@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleConsoleClient.Services;
+using System;
 
 namespace SampleConsoleClient
 {
@@ -6,7 +7,9 @@ namespace SampleConsoleClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           StudentServices studentService=new StudentServices();
+            var students = studentService.GetStudentList();
+            Console.WriteLine(students.Count);
         }
     }
 }
