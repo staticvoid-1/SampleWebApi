@@ -1,32 +1,31 @@
-﻿
-
-function onloadEventHandler() {
-
+function onloadEventHandler()
+{
     var studentList = getStudentList();
-
-
-
 }
 
-function getStudentList() {
-    $.ajax({
-        url: 'http://localhost:62885/api/student'
-    }).done(function (data, textStatus, xhr) {
-        //alert(data);
-        //console.log(data);
+function getStudentList()
+{
+    $.ajax(
+        {
+            url: 'http://localhost:5900/api/student'
+        })
+        .done(function (data, textStatus, xhr)
+        {
+            //alert(data);
+            // console.log(data); 
+            // alert(data[0].name + " ve " + data[1].name);
 
-        //alert(data[0].name + " ve " + data[1].name);
-        fillStudentTable(data);
-        return data;
-    });
-
+            fillStudentTable(data);
+            return data;
+        });
 }
 
-function fillStudentTable(data) {
-
+function fillStudentTable(data)
+{
     var tBody = document.getElementById("studentTableBody");
 
-    for (i = 0; i < data.length; i++) {
+    for (i = 0; i < data.length; i++)
+    {
         var tableRow = document.createElement('tr');
         tableRow.innerHTML =
             "<td>" + data[i].name + "</td>" +
@@ -34,7 +33,5 @@ function fillStudentTable(data) {
             "<td>" + data[i].schoolId + "</td>";
 
         tBody.appendChild(tableRow);
-
     }
-
 }

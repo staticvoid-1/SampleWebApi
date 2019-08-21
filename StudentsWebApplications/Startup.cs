@@ -28,7 +28,7 @@ namespace StudentsWebApplications
         {
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
             {
-                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                builder.WithOrigins("http://localhost:44393").AllowAnyMethod().AllowAnyHeader();
             }));
             services.Configure<CookiePolicyOptions>(options =>
             {
