@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Models;
+using StudentsApi.Core.Models;
 using WebApplication1.Services.Interfaces;
 
 namespace WebApplication1.Services

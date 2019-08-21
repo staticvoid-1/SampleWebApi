@@ -20,6 +20,17 @@ namespace WebApplication1
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback =
+            delegate (
+                object s,
+                System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                System.Security.Cryptography.X509Certificates.X509Chain chain,
+                System.Net.Security.SslPolicyErrors sslPolicyErrors
+            ) {
+                return true;
+            };
         }
 
         public IConfiguration Configuration { get; }
@@ -29,7 +40,7 @@ namespace WebApplication1
         {
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
              {
-                 builder.WithOrigins("http://localhost:62885").AllowAnyMethod().AllowAnyHeader();
+                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
              }));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IStudentsServices>(new StudentServices());
