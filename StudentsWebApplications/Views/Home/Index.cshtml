@@ -2,55 +2,94 @@
     ViewData["Title"] = "Home Page";
 }
 
+<button type="button" 
+        class="btn btn-info btn-lg" 
+        style="margin-top: 20px;margin-bottom: 30px;"
+        data-toggle="modal" 
+        data-target="#myModal">Öğrenci Ekle</button>
+
 <table class=" table table-hover">
     <thead>
-        <tr>
-            <th>İsim</th>
-            <th>Soyİsim</th>
-            <th>Okul No</th>
-        </tr>
+    <tr>
+        <th>İsim</th>
+        <th>Soyİsim</th>
+        <th>Okul No</th>
+    </tr>
     </thead>
 
     <tbody id="studentTableBody">
     </tbody>
 </table>
-<script>
-    function onloadEventHandler() {
 
-        var studentList = getStudentList();
-
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Öğrenci Ekle</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nameInput">İsim:</label>
+                    <input type="text" class="form-control" id="nameInput">
+                </div>
+                <div class="form-group">
+                    <label for="surnameInput">Soyisim:</label>
+                    <input type="text" class="form-control" id="surnameInput">
+                </div>
+                <div class="form-group">
+                    <label for="schoolIdInput">Okul No:</label>
+                    <input type="number" class="form-control" id="schoolIdInput">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="studentAddSubmitButton" type="button" class="btn btn-default" data-dismiss="modal">Tamam</button>
+            </div>
+        </div>
         
-           
-            }
+        <script>
+        var nameInput = document.getElementById('nameInput');
+        var surnameInput = document.getElementById('surnameInput');
+        var schoolIdInput = document.getElementById('schoolIdInput');
+        var studentAddSubmitButton = document.getElementById('studentAddSubmitButton');
         
-        function getStudentList() {
-            $.ajax({
-                url: 'http://localhost:62885/api/student'
-            }).done(function (data, textStatus, xhr) {
-               //alert(data);
-                //console.log(data);
-
-                //alert(data[0].name + " ve " + data[1].name);
-                fillStudentTable(data);
-                return data;
+        studentAddSubmitButton.addEventListener('click', function (event) 
+        {  
+            $.ajax(
+            {
+                type: 'POST',
+                url: 'http://localhost:5900/api/student',
+                dataType: 'json',
+                contentType: 'application/json',
+                data:
+                JSON.stringify(
+                {
+                    "name": nameInput.value,
+                    "surname": surnameInput.value,
+                    "schoolId": schoolIdInput.value
+                }),
+                success: function(data) 
+                {
+                    alert("blabla");
+                    var tBody = document.getElementById("studentTableBody");
+                    var tableRow = document.createElement('tr');
+                    tableRow.innerHTML =
+                        "<td>" + nameInput.value + "</td>" +
+                        "<td>" + surnameInput.value + "</td>" +
+                        "<td>" + schoolIdInput.value + "</td>";
+            
+                    tBody.appendChild(tableRow);
+                },
+                error: function(jqXHR, textStatus, errorThrown) 
+                {
+                    alert("Error, status = " + textStatus + ", " +
+                                  "error thrown: " + errorThrown
+                            );
+                }
             });
-
-        }
-
-        function fillStudentTable(data) {
-
-            var tBody = document.getElementById("studentTableBody");
-
-            for (i = 0; i < data.length; i++) {
-                var tableRow = document.createElement('tr');
-                tableRow.innerHTML =
-                    "<td>" + data[i].name + "</td>" +
-                    "<td>" + data[i].surname + "</td>" +
-                    "<td>" + data[i].schoolId + "</td>";
-
-                tBody.appendChild(tableRow);
-
-        }
-
-    }
-</script>
+        });
+        </script>
+    </div>
+</div>

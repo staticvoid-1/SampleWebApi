@@ -29,7 +29,7 @@ namespace WebApplication1
         {
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
              {
-                 builder.WithOrigins("http://localhost:62885").AllowAnyMethod().AllowAnyHeader();
+                 builder.WithOrigins("http://localhost:5500").AllowAnyMethod().AllowAnyHeader();
              }));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IStudentsServices>(new StudentServices());

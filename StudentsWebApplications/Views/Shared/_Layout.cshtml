@@ -15,7 +15,8 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-
+    
+    <script src="~/js/students.js" asp-append-version="true"></script>
 </head>
 <body onload="onloadEventHandler()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -67,6 +68,7 @@
                 integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/afterbody.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)
