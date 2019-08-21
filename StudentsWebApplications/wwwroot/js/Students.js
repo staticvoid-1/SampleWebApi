@@ -1,10 +1,5 @@
 ﻿function onloadEventHandler() {
-
-
     var studentList = getStudentList();
-
-
-
 }
 
 function getStudentList() {
