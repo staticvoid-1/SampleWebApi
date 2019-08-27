@@ -4,22 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using WebApplication1.Services;
-using WebApplication1.Services.Interfaces;
+using StudentsWebApi.Services;
+using StudentsWebApi.Services.Interfaces;
 
-namespace WebApplication1
+namespace StudentsWebApi
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,9 +25,10 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
-             {
-                 builder.WithOrigins("http://localhost:5500").AllowAnyMethod().AllowAnyHeader();
-             }));
+            {
+                builder.WithOrigins("https://localhost:44393").AllowAnyMethod().AllowAnyHeader();
+            }));
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IStudentsServices>(new StudentServices());
         }

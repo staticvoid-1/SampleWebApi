@@ -5,26 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentsApi.Core.Models;
-using WebApplication1.Services.Interfaces;
+using StudentsWebApi.Models;
+using StudentsWebApi.Services.Interfaces;
 
-namespace WebApplication1.Controllers
+namespace StudentsWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController : ControllerBase
+    public class StudentsController : ControllerBase
     {
         private readonly IStudentsServices studentService;
-        public StudentController(IStudentsServices studentService)
+        
+        public StudentsController(IStudentsServices studentService)
         {
             this.studentService = studentService;
-
         }
+        
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Student>> Get()
         {
-            return this.studentService.StudentList;
+            return this.studentService.GetStudentList();
         }
+        
         //POST api/student
         [HttpPost]
         public ActionResult Post(Student student)
@@ -39,13 +42,22 @@ namespace WebApplication1.Controllers
                 return this.BadRequest("Soyisim alanı girilmelidir");
             }
 
-            if(student.SchoolId <= 0 || student.SchoolId > 10000)
+            if (student.SchoolId <= 0 || student.SchoolId > 10000)
             {
                 return this.BadRequest("Okul numarası 0 ile 10000 arasında olmalıdır");
             }
 
-            this.studentService.StudentList.Add(student);
+            this.studentService.AddStudent(student);
 
+            return this.Ok();
+        }
+        
+        //DELETE api/student
+        [HttpDelete]
+        public ActionResult Delete(RequestModel requestModel)
+        {
+            this.studentService.DeleteStudent(requestModel.StudentId);
+            
             return this.Ok();
         }
     }

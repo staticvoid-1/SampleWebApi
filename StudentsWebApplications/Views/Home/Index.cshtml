@@ -8,11 +8,18 @@
         data-toggle="modal" 
         data-target="#myModal">Öğrenci Ekle</button>
 
+<button type="button" 
+        class="btn btn-danger btn-lg" 
+        style="margin-top: 20px;margin-bottom: 30px;"
+        data-toggle="modal" 
+        data-target="#myModal">Öğrenci Sil</button>
+
 <table class=" table table-hover">
     <thead>
     <tr>
+        <th>Id</th>
         <th>İsim</th>
-        <th>Soyİsim</th>
+        <th>Soyisim</th>
         <th>Okul No</th>
     </tr>
     </thead>
@@ -60,8 +67,7 @@
             $.ajax(
             {
                 type: 'POST',
-                url: 'http://localhost:5900/api/student',
-                dataType: 'json',
+                url: 'https://localhost:44343/api/students',
                 contentType: 'application/json',
                 data:
                 JSON.stringify(
@@ -72,21 +78,18 @@
                 }),
                 success: function(data) 
                 {
-                    alert("blabla");
                     var tBody = document.getElementById("studentTableBody");
                     var tableRow = document.createElement('tr');
                     tableRow.innerHTML =
                         "<td>" + nameInput.value + "</td>" +
                         "<td>" + surnameInput.value + "</td>" +
                         "<td>" + schoolIdInput.value + "</td>";
-            //hi
+            
                     tBody.appendChild(tableRow);
                 },
                 error: function(jqXHR, textStatus, errorThrown) 
                 {
-                    alert("Error, status = " + textStatus + ", " +
-                                  "error thrown: " + errorThrown
-                            );
+                    alert("Error, status = " + textStatus + ", " + "error thrown: " + errorThrown);
                 }
             });
         });

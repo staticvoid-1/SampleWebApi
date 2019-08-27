@@ -1,39 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using StudentsApi.Core.Models;
-using WebApplication1.Services.Interfaces;
+using StudentsWebApi.Services.Interfaces;
 
-namespace WebApplication1.Services
+namespace StudentsWebApi.Services
 {
     public class StudentServices : IStudentsServices
-
     {
-       public List<Student> StudentList { get; }
-       public StudentServices()
+        private List<Student> StudentList { get; }
+        
+        public StudentServices()
         {
-            this.StudentList = new List<Student>();
-            this.StudentList.Add(new Student()
+            this.StudentList = new List<Student>
             {
-                Name = "Türkcan",
-                Surname = "Yılmaz",
-                SchoolId = 116
-            });
-            this.StudentList.Add(new Student()
-            {
-                Name = "Ece",
-                Surname = "Topgüloğlu",
-                SchoolId = 117
-            });
-            this.StudentList.Add(new Student()
-            {
-                Name = "Ertuğrul",
-                Surname = "Özcan",
-                SchoolId = 118
-            });
+                new Student()
+                {
+                    Id = 1000, 
+                    Name = "Türkcan", 
+                    Surname = "Yılmaz", 
+                    SchoolId = 11
+                }, 
+                new Student()
+                {
+                    Id = 1001, 
+                    Name = "Ece", 
+                    Surname = "Topgüloğlu", 
+                    SchoolId = 117
+                }, 
+                new Student()
+                {
+                    Id = 1002, 
+                    Name = "Ertuğrul", 
+                    Surname = "Özcan", 
+                    SchoolId = 118
+                }
+            };
+        }
 
+        public List<Student> GetStudentList()
+        {
+            return this.StudentList;
+        }
 
+        public void AddStudent(Student student)
+        {
+            student.Id = 1000 + this.StudentList.Count;
+            this.StudentList.Add(student);
+        }
+
+        public void DeleteStudent(int id)
+        {
+            var student = this.StudentList.FirstOrDefault(x => x.Id == id);
+            this.StudentList.Remove(student);
         }
     }
 }

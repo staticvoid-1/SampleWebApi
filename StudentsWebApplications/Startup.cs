@@ -18,7 +18,7 @@ namespace StudentsWebApplications
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -37,7 +37,6 @@ namespace StudentsWebApplications
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -53,6 +52,7 @@ namespace StudentsWebApplications
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
             app.UseCors("ApiCorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();

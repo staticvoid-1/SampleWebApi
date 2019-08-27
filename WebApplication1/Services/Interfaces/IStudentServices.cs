@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using StudentsApi.Core.Models;
 
-namespace WebApplication1.Services.Interfaces
+namespace StudentsWebApi.Services.Interfaces
 {
     public interface IStudentsServices
     {
-        List<Student> StudentList { get; }
+        List<Student> GetStudentList();
+
+        void AddStudent(Student student);
+        
+        void DeleteStudent(int id);
     }
 }
