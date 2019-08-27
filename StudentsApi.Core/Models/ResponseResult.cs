@@ -13,8 +13,9 @@ namespace StudentsApi.Core.Models
 		
 		public ResponseResult(bool isSuccessful, string message)
 		{
-			this.IsSuccessful = isSuccessful;
-			this.Message = message;
+			IsSuccessful = isSuccessful;
+			Message = message;
 		}
 	}
+
 }
