@@ -49,16 +49,26 @@ namespace StudentsWebApi.Controllers
 
             this.studentService.AddStudent(student);
 
-            return this.Ok();
+            return this.Ok(student);
         }
         
         //DELETE api/student
         [HttpDelete]
         public ActionResult Delete(RequestModel requestModel)
         {
-            this.studentService.DeleteStudent(requestModel.StudentId);
-            
-            return this.Ok();
+            var studentList = this.studentService.GetStudentList();
+            var student = studentList.FirstOrDefault(x => x.Id == requestModel.StudentId);
+            if (student != null)
+            {
+                this.studentService.DeleteStudent(requestModel.StudentId);
+
+                return this.Ok(student);
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+           
         }
     }
 }

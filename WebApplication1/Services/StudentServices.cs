@@ -18,7 +18,7 @@ namespace StudentsWebApi.Services
                     Id = 1000, 
                     Name = "Türkcan", 
                     Surname = "Yılmaz", 
-                    SchoolId = 11
+                    SchoolId = 116
                 }, 
                 new Student()
                 {
