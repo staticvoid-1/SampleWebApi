@@ -46,7 +46,7 @@ function fillStudentTable(data) {
 
 
 function deleteButtonClickHandler(button) {
-    // Emin misiniz diye sorulsun!
+ 
 
     var studentId = button.id.substring(0, button.id.length-6);
     postDeleteRequest(studentId);
