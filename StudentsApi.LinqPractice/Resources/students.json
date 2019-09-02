@@ -1,0 +1,34 @@
+﻿[
+  {
+    "id": 1001,
+    "name": "Ece Nur",
+    "surname": "Topgüloğlu",
+    "schoolid": 1,
+    "birthdate": "1991-01-01T00:00:00Z",
+    "department": 1,
+    "semester": 7
+
+  },
+
+  {
+    "id": 1002,
+    "name": "Alparslan",
+    "surname": "Demir",
+    "schoolid": 2,
+    "birthdate": "1991-01-01T00:00:00Z",
+    "department": 2,
+    "semester": 7
+
+  },
+
+  {
+    "id": 1003,
+    "name": "Nazlı",
+    "surname": "Demirli",
+    "schoolid": 3,
+    "birthdate": "1991-01-01T00:00:00Z",
+    "department": 3,
+    "semester": 7
+
+  }
+]
