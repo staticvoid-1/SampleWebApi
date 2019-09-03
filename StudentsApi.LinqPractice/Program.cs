@@ -10,7 +10,7 @@ namespace StudentsApi.LinqPractice
 	{
 		static void Main(string[] args)
 		{
-			string json = File.ReadAllText("C:\\Users\\asus\\Documents\\GitHub\\SampleWebApi\\StudentsApi.LinqPractice\\Resources\\students.json");
+            string json = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\GitHub\\SampleWebApi\\StudentsApi.LinqPractice\\Resources\\students.json");
 
 			var studentList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Student>>(json);
 		}
