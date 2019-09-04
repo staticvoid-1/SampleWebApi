@@ -23,7 +23,7 @@ function addStudentRow(student, tBody) {
         "<td>" + student.id + "</td>" +
         "<td>" + student.name + "</td>" +
         "<td>" + student.surname + "</td>" +
-        "<td>" + student.schoolId + "</td>" +
+        "<td>" + student.schoolid + "</td>" +
         "<td>" + "<button id='" + student.id + "Button" + "' class='btn btn-danger' onclick='deleteButtonClickHandler(this)'>" + "S" + "\u0130" + "L " + "</button>" + "</td>";
     tableRow.id = student.id + "Row";
     tBody.appendChild(tableRow);
