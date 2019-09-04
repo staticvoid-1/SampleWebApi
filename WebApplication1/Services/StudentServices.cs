@@ -44,7 +44,10 @@ namespace StudentsWebApi.Services
 
         public void AddStudent(Student student)
         {
-            student.Id = 1000 + this.StudentList.Count;
+            var OrderedStudentList = this.StudentList.OrderBy(x => x.Id);
+            var LastStudent = OrderedStudentList.Last();
+            student.Id = LastStudent.Id + 1;
+
             this.StudentList.Add(student);
         }
 
